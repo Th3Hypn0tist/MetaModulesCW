@@ -37,6 +37,10 @@ The concrete MMDemo business model itself — its actual company structure, role
 ### Data
 - [DWH substrate](data/DWH.md)
 
+### Runtime
+- [Composition runtime](runtime/Composition-runtime.md)
+- [SiteEngine](runtime/SiteEngine.md)
+
 ### Execution
 - [Command Surface](execution/CommandSurface.md)
 - [AccessCore](execution/AccessCore.md)
@@ -72,6 +76,8 @@ Universals
 DWH
     ↓
 Composition / MetaModule
+    ↓
+SiteEngine / composition runtime
     ↓
 Projection
     ↓

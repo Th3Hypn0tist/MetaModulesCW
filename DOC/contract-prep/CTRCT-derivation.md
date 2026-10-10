@@ -33,6 +33,7 @@ The DOC set suggests at least these future contract areas:
 - identity-family responsibility
 - Universal reuse
 - Composition ownership boundaries
+- Composition runtime / SiteEngine hosting
 - Projection non-authority
 - business-continuity separation
 - DWH substrate and resolution
@@ -43,6 +44,7 @@ The DOC set suggests at least these future contract areas:
 - WebMini boundary
 - WebEngine rendering boundary
 - Studio editing boundary
+- runtime mounting, dependency resolution and lifecycle boundaries
 - no-duplication rules.
 
 ## Contract quality test

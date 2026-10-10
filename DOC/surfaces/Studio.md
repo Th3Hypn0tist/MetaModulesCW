@@ -41,3 +41,20 @@ WebEngine
 ```
 
 Studio actions themselves use the same canonical functional path through CS and AC.
+
+
+## Relation to SiteEngine
+
+Studio edits Composition structure and presentation configuration.
+
+SiteEngine is responsible for running/materializing the resulting Composition. Studio is therefore an editor of runtime input, not the runtime host itself.
+
+```text
+Studio
+  ↓ edits
+Composition
+  ↓ mount/materialize
+SiteEngine
+  ↓
+active runtime structure
+```
