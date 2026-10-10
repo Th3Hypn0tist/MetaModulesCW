@@ -1,105 +1,89 @@
-# WebEngine
+# WebEngine integration
 
-WebEngine is the canonical MetaModules UI layer.
+WebEngine is the canonical MetaModules UI.
 
-It is an AccessCore-aware dynamic UI engine that materializes MetaModules Composition structure into the user-facing web surface.
+**WebEngineCW is the single source of truth for WebEngine itself.**
 
-Its purpose is to turn canonical MetaModules structure — Composition, SiteTree, Projections and authorized capabilities — into the operative MetaModules user interface.
+MetaModulesCW does not redefine WebEngine rendering semantics, SiteTree interpretation rules, navigation behavior, lifecycle semantics or other WebEngine-owned behavior.
 
-## Rendering path
+Instead, MetaModulesCW declares which WebEngine contracts its Compositions require and defines the integration between MetaModules structure and those contract surfaces.
 
-```text
-request / context
-       ↓
-SiteEngine
-       ↓
-Composition + Projection + SiteTree
-       ↓
-Command Surface + AccessCore
-       ↓
-allowed data and capabilities
-       ↓
-WebEngine render
-```
+## Contract inheritance, not product-version dependency
 
-The same logical page may render differently for different identities because the available capabilities and data can differ.
+MetaModulesCW does not depend on a WebEngine software version.
 
-## Lightweight surface principle
+The relevant question is:
 
-WebEngine is intended to keep the visible surface lightweight even when the backend system is large.
+> Which WebEngineCW contracts does this MetaModules model require?
 
-System complexity does not automatically become interface complexity.
-
-## Difference from WebMini
-
-WebMini:
-
-- raw static HTTP server,
-- typically local-first,
-- heavy client applications are allowed,
-- no AccessCore-dependent server-side rendering requirement.
-
-WebEngine:
-
-- dynamic renderer,
-- AccessCore-aware,
-- Composition/Projection/SiteTree-aware output construction.
-
-The difference is where and how the output is composed, not application size.
-
-
-## Relation to SiteEngine
-
-WebEngine is the MetaModules UI, while SiteEngine is the Composition runtime host.
-
-SiteEngine hosts/materializes the active Composition and its runtime structure. WebEngine consumes that structure and turns the permitted result into the MetaModules UI.
-
-The separation keeps semantic ownership clear:
-
-```text
-Composition
-   ↓
-SiteEngine
-   ↓
-runtime structure
-       ↓
-   WebEngine
-       ↓
-MetaModules UI
-```
-
-
-## Canonical UI role
-
-WebEngine is not merely one optional renderer among peers inside MetaModulesCW.
-
-It is the UI contract for MetaModules.
-
-That means MetaModulesCW must define enough of WebEngine behavior for a Composition to have a deterministic UI interpretation:
-
-- SiteTree interpretation,
-- page composition,
-- Projection placement,
-- capability presentation,
-- AccessCore-filtered visibility,
-- navigation behavior,
-- refresh/re-resolution behavior,
-- Composition-to-UI mapping.
-
-Other control surfaces can exist against the same backend contracts, but they are external alternatives to the MetaModules UI rather than substitutes for defining it.
+A WebEngine implementation may have any release/build/version identifier as long as it conforms to the required contracts.
 
 Conceptually:
 
 ```text
+WebEngine implementation
+        ↓ conforms to
+WebEngineCW contracts
+        ↑ required by
+MetaModulesCW
+```
+
+The contract identities and provenance are what matter to conformance. Product/release version is not the semantic dependency.
+
+## Ownership boundary
+
+WebEngineCW owns:
+
+- WebEngine semantics,
+- WebEngine runtime behavior,
+- UI interpretation rules,
+- rendering behavior,
+- WebEngine-specific lifecycle,
+- WebEngine conformance rules.
+
+MetaModulesCW owns:
+
+- which WebEngine contracts MetaModules requires,
+- how Composition structure is supplied to those contracts,
+- how MetaModules SiteTree and Projections bind into the WebEngine contract surface,
+- how MetaModules CS / AC / DWH semantics intersect with that surface,
+- MetaModules-specific integration constraints.
+
+## No duplicate truth
+
+MetaModulesCW must not copy WebEngine contract definitions locally.
+
+```text
+WRONG:
+MetaModulesCW
+└─ duplicated WebEngine rule
+
+RIGHT:
+WebEngineCW
+└─ WebEngine contract
+
+MetaModulesCW
+└─ reference / requirement to that contract
+```
+
+This keeps WebEngine independently evolvable while preserving deterministic MetaModules UI behavior.
+
+## Canonical MetaModules path
+
+```text
 Business Universals
-      ↓
+        ↓
 Composition
-      ↓
+        ↓
 SiteEngine
-      ↓
-CS + AC + DWH
-      ↓
+        ↓
+DWH + CS + AC
+        ↓
+MetaModules UI structure
+        ↓
+required WebEngineCW contracts
+        ↓
 WebEngine
-      ↓
+        ↓
 MetaModules UI
 ```

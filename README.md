@@ -2,7 +2,7 @@
 
 > **Build the semantics once. Derive everything else from structure.**
 
-MetaModulesCW defines the canonical MetaModules framework on top of AIGM Canonical Wireframe (CW). It includes the semantic model, Composition runtime contracts, data/access boundaries and the canonical MetaModules UI contract.
+MetaModulesCW defines the canonical MetaModules framework on top of AIGM Canonical Wireframe (CW). It includes the semantic model, Composition runtime contracts and the integration contracts that connect MetaModules to independently owned framework components.
 
 The core idea is deliberately strict:
 
@@ -458,7 +458,7 @@ Expose is the backend boundary through which a surface or protocol is served.
 
 Backend semantics must remain independent of the chosen control surface.
 
-MetaModulesCW defines WebEngine as the canonical MetaModules UI. Other control surfaces may consume the same canonical backend capabilities, but they do not replace WebEngine's role inside the MetaModules framework specification.
+WebEngine is the canonical MetaModules UI, but WebEngine semantics are not owned by MetaModulesCW. WebEngineCW is the single semantic and contractual authority for WebEngine. MetaModulesCW inherits/requires the WebEngine contracts it needs and defines only the MetaModules ↔ WebEngine integration.
 
 Other surfaces may include:
 
@@ -507,7 +507,7 @@ The surface is not moved across an untrusted network. When the working context m
 
 ### WebEngine
 
-WebEngine is the canonical MetaModules UI. It is the AC-aware dynamic UI layer that materializes Composition, SiteTree and Projection structure into the user-facing MetaModules web surface.
+WebEngine is the canonical MetaModules UI. Its own semantics and operating contracts belong to WebEngineCW. MetaModulesCW references the required WebEngine contracts and defines how MetaModules Composition, SiteTree, Projections, CS/AC and data are presented to that contract surface.
 
 Its fundamental path is:
 
@@ -869,11 +869,11 @@ Studio
         ↓
 SiteTree + projections
         ↓
+WebEngineCW contracts
+        ↓
 WebEngine (MetaModules UI)
         ↓
 REST / WebSocket / MCP and other Expose mappings where required
-        ↓
-REST / WebSocket / MCP
 ```
 
 The objective is not to generate arbitrary software from prose.
@@ -961,6 +961,8 @@ Strategy examples
 Everyday examples
         ↓
 Studio / SiteTree / Projection relationships
+        ↓
+required WebEngineCW contract set
         ↓
 DWH contract closure
         ↓

@@ -1,10 +1,10 @@
 # MetaModules UI
 
-MetaModules has a canonical UI layer: **WebEngine**.
+MetaModules has a canonical UI: **WebEngine**.
 
-This is a framework-level relationship, not an incidental implementation choice.
+The semantic authority for WebEngine is **WebEngineCW**, not MetaModulesCW.
 
-MetaModulesCW therefore covers both the canonical semantic structure and the contracts required to turn that structure into an operative user interface.
+MetaModulesCW specifies how MetaModules uses the WebEngine contract surface.
 
 ## Canonical path
 
@@ -19,39 +19,40 @@ DWH + Command Surface + AccessCore
         ↓
 SiteTree + Projections + permitted capabilities
         ↓
+required WebEngineCW contracts
+        ↓
 WebEngine
         ↓
 MetaModules UI
 ```
 
-## What the UI derives from structure
+## Contract-based dependency
 
-The MetaModules UI should derive as much as possible from canonical structure rather than duplicating application logic.
+MetaModules does not require a particular WebEngine release number.
 
-This includes:
+It requires a set of WebEngineCW contracts.
 
-- navigation from SiteTree,
-- pages from Composition structure,
-- visible Projections,
-- available capabilities,
-- role/context-specific visibility through AccessCore,
-- links between related canonical objects,
-- refresh/re-resolution behavior.
+Therefore:
 
-## Ownership boundary
+```text
+software version != dependency identity
+contract conformance = dependency condition
+```
 
-WebEngine owns UI interpretation and rendering behavior.
+Different WebEngine implementations or releases can satisfy the same MetaModules requirement if they conform to the required contracts.
 
-It does not own:
+## MetaModules-owned UI mapping
 
-- Business Universal semantics,
-- canonical business data,
-- AccessCore policy,
-- DWH ownership,
-- Command Surface capability semantics,
-- Composition truth.
+MetaModulesCW may define how its own concepts map into WebEngine contract inputs, including:
 
-The UI is therefore strong inside the framework while still being downstream of canonical semantics.
+- Composition-provided structure,
+- SiteTree references,
+- Projection availability,
+- capability references,
+- AccessCore-filtered visibility,
+- DWH-resolved data context.
+
+Those mappings do not redefine WebEngine behavior.
 
 ## WebMini distinction
 
@@ -60,9 +61,3 @@ WebMini is not the MetaModules UI.
 WebMini is a local-first raw static HTTP server intended to serve local applications, including heavy tools such as Structure.
 
 A WebMini application may consume the same backend capabilities, but it is a separate local application surface.
-
-## Why this belongs in MetaModulesCW
-
-A Composition that defines SiteTree, Projections and presentation arrangement is incomplete if the framework does not define how those structures become UI.
-
-For that reason, WebEngine behavior belongs in the same CW framework and its contracts are derived alongside Composition runtime contracts.
