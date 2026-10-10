@@ -58,10 +58,8 @@ The lifecycle must preserve canonical business truth outside the replaceable Com
 
 ## Relationship to surfaces
 
-The runtime does not imply one renderer.
+The MetaModules runtime has a canonical UI path: SiteEngine-hosted Composition structure is rendered through WebEngine.
 
-WebEngine can render SiteEngine-hosted structure dynamically.
+Other control surfaces may consume the same backend capabilities through appropriate Exposes, but that does not make WebEngine incidental to MetaModulesCW.
 
-A local application can consume the same canonical capabilities through appropriate Exposes.
-
-The runtime contract exists so that Composition behavior remains predictable independently of the concrete surface.
+The runtime contract exists so that Composition behavior remains predictable and WebEngine can interpret the same Composition structure consistently.

@@ -2,13 +2,13 @@
 
 > **Build the semantics once. Derive everything else from structure.**
 
-MetaModulesCW defines the canonical MetaModule model on top of AIGM Canonical Wireframe (CW).
+MetaModulesCW defines the canonical MetaModules framework on top of AIGM Canonical Wireframe (CW). It includes the semantic model, Composition runtime contracts, data/access boundaries and the canonical MetaModules UI contract.
 
 The core idea is deliberately strict:
 
 > If something can be referenced, composed, projected, inherited, resolved or reused, it must not be duplicated.
 
-MetaModules is not an application suite and it is not an ERP implementation. It defines the reusable semantic primitives, contracts and composition rules from which ERP, CRM, WMS, HRM, Strategy, Everyday and other systems can be composed.
+MetaModules is not an application suite and it is not an ERP implementation. It defines the reusable semantic primitives, contracts, composition rules and operating framework from which ERP, CRM, WMS, HRM, Strategy, Everyday and other systems can be composed and run.
 
 The business goal is equally strict:
 
@@ -443,7 +443,8 @@ For example, one canonical capability can be surfaced as:
 CS command
 REST endpoint
 WebSocket operation
-MCP operationWebEngine action
+MCP operation
+WebEngine action
 Studio action
 ```
 
@@ -457,12 +458,13 @@ Expose is the backend boundary through which a surface or protocol is served.
 
 Backend semantics must remain independent of the chosen control surface.
 
-Possible surfaces include:
+MetaModulesCW defines WebEngine as the canonical MetaModules UI. Other control surfaces may consume the same canonical backend capabilities, but they do not replace WebEngine's role inside the MetaModules framework specification.
 
-- WebMini
-- WebEngine
-- Unity-based control surface
-- native application
+Other surfaces may include:
+
+- WebMini-hosted local applications
+- Unity-based control surfaces
+- native applications
 - other future control surfaces
 
 Replacing the surface must not redefine backend semantics or canonical business truth.
@@ -505,7 +507,7 @@ The surface is not moved across an untrusted network. When the working context m
 
 ### WebEngine
 
-WebEngine is the AC-aware dynamic renderer.
+WebEngine is the canonical MetaModules UI. It is the AC-aware dynamic UI layer that materializes Composition, SiteTree and Projection structure into the user-facing MetaModules web surface.
 
 Its fundamental path is:
 
@@ -867,7 +869,9 @@ Studio
         ↓
 SiteTree + projections
         ↓
-WebEngine / WebMini / other surfaces
+WebEngine (MetaModules UI)
+        ↓
+REST / WebSocket / MCP and other Expose mappings where required
         ↓
 REST / WebSocket / MCP
 ```

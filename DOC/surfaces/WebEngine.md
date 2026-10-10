@@ -1,8 +1,10 @@
 # WebEngine
 
-WebEngine is an AccessCore-aware dynamic renderer.
+WebEngine is the canonical MetaModules UI layer.
 
-Its purpose is to compose output from canonical structure, context, permitted capabilities and projections.
+It is an AccessCore-aware dynamic UI engine that materializes MetaModules Composition structure into the user-facing web surface.
+
+Its purpose is to turn canonical MetaModules structure — Composition, SiteTree, Projections and authorized capabilities — into the operative MetaModules user interface.
 
 ## Rendering path
 
@@ -48,11 +50,11 @@ The difference is where and how the output is composed, not application size.
 
 ## Relation to SiteEngine
 
-WebEngine is a renderer, not the Composition runtime authority.
+WebEngine is the MetaModules UI, while SiteEngine is the Composition runtime host.
 
-SiteEngine hosts/materializes the active Composition and its runtime structure. WebEngine consumes that structure and renders the permitted result.
+SiteEngine hosts/materializes the active Composition and its runtime structure. WebEngine consumes that structure and turns the permitted result into the MetaModules UI.
 
-This keeps rendering replaceable:
+The separation keeps semantic ownership clear:
 
 ```text
 Composition
@@ -60,7 +62,44 @@ Composition
 SiteEngine
    ↓
 runtime structure
-   ├─ WebEngine
-   ├─ another renderer
-   └─ another control surface
+       ↓
+   WebEngine
+       ↓
+MetaModules UI
+```
+
+
+## Canonical UI role
+
+WebEngine is not merely one optional renderer among peers inside MetaModulesCW.
+
+It is the UI contract for MetaModules.
+
+That means MetaModulesCW must define enough of WebEngine behavior for a Composition to have a deterministic UI interpretation:
+
+- SiteTree interpretation,
+- page composition,
+- Projection placement,
+- capability presentation,
+- AccessCore-filtered visibility,
+- navigation behavior,
+- refresh/re-resolution behavior,
+- Composition-to-UI mapping.
+
+Other control surfaces can exist against the same backend contracts, but they are external alternatives to the MetaModules UI rather than substitutes for defining it.
+
+Conceptually:
+
+```text
+Business Universals
+      ↓
+Composition
+      ↓
+SiteEngine
+      ↓
+CS + AC + DWH
+      ↓
+WebEngine
+      ↓
+MetaModules UI
 ```

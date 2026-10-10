@@ -1,8 +1,8 @@
 # MetaModulesCW — DOC pass
 
-This directory is the descriptive specification layer for MetaModulesCW.
+This directory is the descriptive specification layer for the complete MetaModules framework.
 
-The purpose of the DOC pass is to make the architecture explicit before normative `#CTRCT` artifacts are distilled from it.
+The purpose of the DOC pass is to make the entire operating framework explicit before normative `#CTRCT` artifacts are distilled from it. This includes semantic primitives, Composition runtime, DWH, CS/AC, Expose and the canonical MetaModules UI.
 
 ## Layer boundaries
 
@@ -50,9 +50,10 @@ The concrete MMDemo business model itself — its actual company structure, role
 - [Expose](expose/Expose.md)
 - [Derived interfaces](expose/Derived-interfaces.md)
 
-### Control surfaces
+### UI and surfaces
+- [MetaModules UI](ui/MetaModules-UI.md)
+- [WebEngine](surfaces/WebEngine.md) — canonical MetaModules UI implementation/contract
 - [WebMini](surfaces/WebMini.md)
-- [WebEngine](surfaces/WebEngine.md)
 - [Studio](surfaces/Studio.md)
 
 ### Composition families
@@ -79,15 +80,15 @@ Composition / MetaModule
     ↓
 SiteEngine / composition runtime
     ↓
-Projection
+SiteTree + Projection
     ↓
-Command Surface
-    ↓
-AccessCore
+Command Surface + AccessCore
     ↓
 Expose
     ↓
-local control surface / protocol surface
+WebEngine
+    ↓
+MetaModules UI
 ```
 
 The model is designed so that semantic meaning is defined once and reused structurally.

@@ -20,7 +20,7 @@ SiteEngine
    ├─ apply AccessCore availability
    ├─ materialize SiteTree
    ├─ materialize Projections
-   └─ expose runtime structure to surfaces
+   └─ expose runtime structure to WebEngine and other permitted consumers
 ```
 
 SiteEngine is therefore part of the contract surface that MetaModulesCW must describe.
@@ -55,7 +55,7 @@ A conforming SiteEngine runtime needs explicit contracts for at least:
 - connecting actions through Command Surface,
 - applying AccessCore decisions,
 - materializing SiteTree and Projection availability,
-- exposing the resulting runtime structure to a renderer or control surface,
+- exposing the resulting runtime structure to WebEngine as the canonical MetaModules UI, and to other permitted consumers where applicable,
 - unmounting / replacing a Composition without transferring canonical truth into the runtime host.
 
 The exact normative rules belong to the later `#CTRCT` pass.
@@ -64,7 +64,7 @@ The exact normative rules belong to the later `#CTRCT` pass.
 
 The runtime host must not make Composition semantics renderer-specific.
 
-A single Composition should remain conceptually usable with different surfaces:
+A Composition's canonical business semantics must remain independent of the UI layer. Inside MetaModules, WebEngine is the canonical UI consumer of the runtime structure:
 
 ```text
 Composition
@@ -72,9 +72,12 @@ Composition
 SiteEngine
     ↓
 runtime structure
- ┌──┼────────────┐
- ↓  ↓            ↓
-WebEngine   local app   future surface
+      ↓
+  WebEngine
+      ↓
+MetaModules UI
+
+The same backend capabilities may also be exposed to other control surfaces without changing canonical business semantics.
 ```
 
 This is part of the broader MetaModules principle:

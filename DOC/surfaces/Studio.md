@@ -2,7 +2,7 @@
 
 Studio is the editing surface for Composition-oriented presentation and arrangement.
 
-Its primary role is WYSIWYG editing of WebEngine SiteTree and page composition, while also allowing editable Composition configuration where that Composition exposes it.
+Its primary role is WYSIWYG editing of the MetaModules UI structure implemented by WebEngine: SiteTree, page composition and visible Projections, while also allowing editable Composition configuration where that Composition exposes it.
 
 ## Studio edits
 
@@ -58,3 +58,22 @@ SiteEngine
   ↓
 active runtime structure
 ```
+
+
+## UI relationship
+
+Studio is the editor for MetaModules UI structure; WebEngine is the runtime UI.
+
+```text
+Studio
+  ↓ edits
+Composition + SiteTree + Projections
+  ↓
+SiteEngine
+  ↓
+WebEngine
+  ↓
+MetaModules UI
+```
+
+The editor and runtime therefore must share the same structural interpretation of Composition.
