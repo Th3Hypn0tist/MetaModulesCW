@@ -13,7 +13,9 @@ The purpose of the DOC pass is to make the architecture explicit before normativ
 
 This pass intentionally does **not** create `#CTRCT`, `#ABS` or `#FILE` artifacts.
 
-MMDemo Industries Oy is intentionally excluded from DOC as a concrete business model. It belongs to the abstraction layer and will be modeled later under `#ABS`.
+MMDemo Industries Oy may be discussed in DOC as part of the design process: why it exists, what architectural questions it is intended to test, and which parts of MetaModules it should exercise.
+
+The concrete MMDemo business model itself — its actual company structure, roles, processes, pipeline, configured Compositions and other modeled facts — belongs later to `#ABS`.
 
 ## DOC index
 
@@ -53,6 +55,9 @@ MMDemo Industries Oy is intentionally excluded from DOC as a concrete business m
 - [Business Domain](compositions/BusinessDomain.md)
 - [Strategy](compositions/Strategy.md)
 - [Everyday](compositions/Everyday.md)
+
+### Design process
+- [MMDemo Industries Oy — design role](design/MMDemo-design-role.md)
 
 ### Contract preparation
 - [CTRCT derivation](contract-prep/CTRCT-derivation.md)
