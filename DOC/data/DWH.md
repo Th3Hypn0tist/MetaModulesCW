@@ -55,7 +55,6 @@ The same canonical data may be used by:
 - WebEngine pages,
 - native applications,
 - Unity surfaces,
-- Q tools,
 - other future control surfaces.
 
 The data model remains canonical while the local surface changes.

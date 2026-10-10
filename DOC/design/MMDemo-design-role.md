@@ -100,7 +100,7 @@ A local surface may resolve the required canonical data through DWH without tran
 
 Every action exposed through the demo must ultimately be command-addressable through CS.
 
-WebEngine, WebMini applications, Studio, REST, Q tools and other surfaces must converge on the same canonical capability rather than introducing UI-specific business logic.
+WebEngine, WebMini applications, Studio, REST and other surfaces must converge on the same canonical capability rather than introducing UI-specific business logic.
 
 ### 6. AccessCore authority
 

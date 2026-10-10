@@ -443,9 +443,7 @@ For example, one canonical capability can be surfaced as:
 CS command
 REST endpoint
 WebSocket operation
-MCP operation
-Q tool
-WebEngine action
+MCP operationWebEngine action
 Studio action
 ```
 
@@ -848,46 +846,7 @@ This visualization should make the core principle visible:
 
 ---
 
-## 16. Q and the Tool Layer
-
-MetaModules is **not** Q's Tool Layer.
-
-MetaModules defines the system semantics and compositions.
-
-Q interacts with the system through a separate Tool Layer.
-
-Conceptually:
-
-```text
-Q
-↓
-Tool Layer
-↓
-Command Surface
-↓
-AccessCore
-↓
-canonical backend operation
-```
-
-Q must not be given unrestricted direct access to canonical business data merely because it can understand the schema.
-
-The Tool Layer defines the explicit action surface available to Q.
-
-Examples:
-
-```text
-create_order
-issue_invoice
-reserve_stock
-close_project
-...```
-
-Those tools ultimately resolve to the same canonical capabilities used by other surfaces.
-
----
-
-## 17. Structural derivation is the goal
+## 16. Structural derivation is the goal
 
 Once the semantic structure is correct, the rest should follow from it.
 
@@ -910,7 +869,7 @@ SiteTree + projections
         ↓
 WebEngine / WebMini / other surfaces
         ↓
-REST / WebSocket / MCP / Q tools
+REST / WebSocket / MCP
 ```
 
 The objective is not to generate arbitrary software from prose.
@@ -919,7 +878,7 @@ The objective is to make repeated definitions unnecessary because the semantic s
 
 ---
 
-## 18. Hard invariants
+## 17. Hard invariants
 
 The implementation and CW model should be reviewed against these invariants.
 
@@ -970,7 +929,7 @@ A Universal remains minimal and reusable. Domain-specific additions must not con
 
 ---
 
-## 19. Repository implementation target
+## 18. Repository implementation target
 
 The first complete MetaModulesCW milestone should contain:
 
@@ -1010,7 +969,7 @@ The repository must remain valid against the selected immutable CW specification
 
 ---
 
-## 20. Review test
+## 19. Review test
 
 When reviewing any addition, ask:
 

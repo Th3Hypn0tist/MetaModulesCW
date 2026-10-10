@@ -24,7 +24,6 @@ Examples:
 WebEngine button ─┐
 Studio action ────┤
 REST request ─────┤
-Q tool ───────────┤
 WebMini app ──────┤
                   ↓
              same CS capability

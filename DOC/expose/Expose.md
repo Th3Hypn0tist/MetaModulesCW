@@ -34,4 +34,3 @@ For example, the same backend capability may be consumed by:
 - WebMini application,
 - native UI,
 - Unity UI,
-- Q through its Tool Layer.

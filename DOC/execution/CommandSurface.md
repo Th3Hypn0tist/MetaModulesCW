@@ -19,7 +19,6 @@ A single canonical capability can be used by:
 - REST adapter,
 - WebSocket adapter,
 - MCP adapter,
-- Q Tool Layer.
 
 These are different surfaces over the same capability.
 
