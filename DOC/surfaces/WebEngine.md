@@ -6,29 +6,31 @@ WebEngine is the canonical MetaModules UI.
 
 MetaModulesCW does not redefine WebEngine rendering semantics, SiteTree interpretation rules, navigation behavior, lifecycle semantics or other WebEngine-owned behavior.
 
-Instead, MetaModulesCW declares which WebEngine contracts its Compositions require and defines the integration between MetaModules structure and those contract surfaces.
+Instead, MetaModulesCW references the exported WebEngine API contract and defines only the MetaModules-side binding to that contract.
 
-## Contract inheritance, not product-version dependency
+## API contract dependency
 
-MetaModulesCW does not depend on a WebEngine software version.
+MetaModulesCW does not depend on a WebEngine software version or on WebEngine internal contracts.
 
 The relevant question is:
 
-> Which WebEngineCW contracts does this MetaModules model require?
-
-A WebEngine implementation may have any release/build/version identifier as long as it conforms to the required contracts.
+> Does WebEngine satisfy the WebEngine API contract referenced by MetaModulesCW?
 
 Conceptually:
 
 ```text
-WebEngine implementation
-        ↓ conforms to
-WebEngineCW contracts
-        ↑ required by
+WebEngineCW
+    ↓ defines and exports
+WebEngine API contract
+    ↑ referenced by
 MetaModulesCW
+
+WebEngine implementation
+    ↓ must satisfy
+WebEngine API contract
 ```
 
-The contract identities and provenance are what matter to conformance. Product/release version is not the semantic dependency.
+The implementation behind that boundary is irrelevant to MetaModules.
 
 ## Ownership boundary
 
@@ -43,11 +45,10 @@ WebEngineCW owns:
 
 MetaModulesCW owns:
 
-- which WebEngine contracts MetaModules requires,
-- how Composition structure is supplied to those contracts,
-- how MetaModules SiteTree and Projections bind into the WebEngine contract surface,
-- how MetaModules CS / AC / DWH semantics intersect with that surface,
-- MetaModules-specific integration constraints.
+- the reference to the WebEngine API contract,
+- the MetaModules-side mapping into that API,
+- the MetaModules-side expectations for data/context supplied to the API,
+- MetaModules-specific integration constraints that do not redefine WebEngine behavior.
 
 ## No duplicate truth
 
@@ -60,10 +61,10 @@ MetaModulesCW
 
 RIGHT:
 WebEngineCW
-└─ WebEngine contract
+└─ exports WebEngine API contract
 
 MetaModulesCW
-└─ reference / requirement to that contract
+└─ references WebEngine API contract
 ```
 
 This keeps WebEngine independently evolvable while preserving deterministic MetaModules UI behavior.
@@ -81,7 +82,7 @@ DWH + CS + AC
         ↓
 MetaModules UI structure
         ↓
-required WebEngineCW contracts
+WebEngine API contract
         ↓
 WebEngine
         ↓

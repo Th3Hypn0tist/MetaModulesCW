@@ -4,7 +4,7 @@ MetaModules has a canonical UI: **WebEngine**.
 
 The semantic authority for WebEngine is **WebEngineCW**, not MetaModulesCW.
 
-MetaModulesCW specifies how MetaModules uses the WebEngine contract surface.
+MetaModulesCW specifies how MetaModules uses the exported WebEngine API contract.
 
 ## Canonical path
 
@@ -19,7 +19,7 @@ DWH + Command Surface + AccessCore
         ↓
 SiteTree + Projections + permitted capabilities
         ↓
-required WebEngineCW contracts
+WebEngine API contract
         ↓
 WebEngine
         ↓
@@ -28,9 +28,9 @@ MetaModules UI
 
 ## Contract-based dependency
 
-MetaModules does not require a particular WebEngine release number.
+MetaModules does not require a particular WebEngine release number or knowledge of WebEngine internals.
 
-It requires a set of WebEngineCW contracts.
+It requires conformance to the WebEngine API contract.
 
 Therefore:
 
@@ -39,11 +39,11 @@ software version != dependency identity
 contract conformance = dependency condition
 ```
 
-Different WebEngine implementations or releases can satisfy the same MetaModules requirement if they conform to the required contracts.
+Different WebEngine implementations or releases can satisfy the same MetaModules requirement if they conform to the referenced WebEngine API contract.
 
 ## MetaModules-owned UI mapping
 
-MetaModulesCW may define how its own concepts map into WebEngine contract inputs, including:
+MetaModulesCW may define how its own concepts map into WebEngine API inputs, including:
 
 - Composition-provided structure,
 - SiteTree references,

@@ -23,6 +23,7 @@ The concrete MMDemo business model itself — its actual company structure, role
 - [CW baseline](foundation/CW-baseline.md)
 - [Identity families](foundation/Identity-families.md)
 - [Contract inheritance](foundation/Contract-inheritance.md)
+- [WebEngine API boundary](integration/WebEngine-API.md)
 
 ### Meta model
 - [MetaModule model](meta-model/MetaModule.md)
@@ -53,7 +54,7 @@ The concrete MMDemo business model itself — its actual company structure, role
 
 ### UI and surfaces
 - [MetaModules UI](ui/MetaModules-UI.md)
-- [WebEngine integration](surfaces/WebEngine.md) — MetaModules use of WebEngineCW contracts
+- [WebEngine integration](surfaces/WebEngine.md) — MetaModules use of the WebEngine API contract
 - [WebMini](surfaces/WebMini.md)
 - [Studio](surfaces/Studio.md)
 
@@ -87,7 +88,7 @@ Command Surface + AccessCore
     ↓
 Expose
     ↓
-required WebEngineCW contracts
+WebEngine API contract
     ↓
 WebEngine
     ↓

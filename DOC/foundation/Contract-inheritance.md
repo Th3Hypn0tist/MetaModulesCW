@@ -53,17 +53,50 @@ The rule is:
 
 WebEngineCW owns WebEngine semantics.
 
-MetaModulesCW owns only the integration:
+WebEngineCW owns the complete internal WebEngine contract model and exports the WebEngine API contract.
+
+MetaModulesCW references only that exported API contract:
 
 ```text
 WebEngineCW
-├─ WebEngine contracts
-└─ WebEngine conformance
+├─ internal WebEngine semantics
+├─ internal WebEngine contracts
+├─ conformance rules
+└─ exports: WebEngine API contract
 
 MetaModulesCW
-├─ requires selected WebEngine contracts
-├─ maps Composition structure to them
-└─ adds MetaModules-specific integration constraints
+└─ references: WebEngine API contract
 ```
 
+MetaModulesCW does not need to know which internal WebEngine contracts, modules, functions or implementation strategies satisfy the API contract.
+
 No WebEngine contract text should be duplicated into MetaModulesCW merely for convenience.
+
+
+## Black-box conformance boundary
+
+For MetaModules, WebEngine is a contract boundary.
+
+```text
+MetaModulesCW
+     ↓
+WebEngine API contract
+     ↓
+WebEngine
+```
+
+Everything below the API contract is WebEngineCW territory.
+
+MetaModules conformance asks only:
+
+> Does the connected WebEngine satisfy the referenced API contract?
+
+It does not ask:
+
+- which internal WebEngine architecture is used,
+- which language is used,
+- which modules implement the behavior,
+- which internal contracts are composed,
+- which WebEngine release number is running.
+
+Those concerns are irrelevant to MetaModules as long as the API contract is satisfied.

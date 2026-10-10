@@ -42,7 +42,7 @@ The DOC set suggests at least these future contract areas:
 - Expose publication boundaries
 - derived interface conformance
 - WebMini boundary
-- MetaModules ↔ WebEngineCW contract-inheritance and integration boundary
+- MetaModules ↔ WebEngine API contract boundary
 - Studio editing boundary
 - runtime mounting, dependency resolution and lifecycle boundaries
 - no-duplication rules.
@@ -62,6 +62,6 @@ The contract pass is where principles become conformance rules.
 
 ## MetaModules UI contract
 
-Because WebEngine is the canonical MetaModules UI, the CTRCT pass must define which WebEngineCW contracts MetaModules requires and how MetaModules binds to them.
+Because WebEngine is the canonical MetaModules UI, the CTRCT pass must define the MetaModules reference to the WebEngine API contract and the MetaModules-side binding to that API.
 
-It must not redefine WebEngine-owned semantics. Conformance is based on the required contract set, not on a WebEngine product/release version.
+It must not redefine WebEngine-owned semantics or depend on WebEngine internals. MetaModules conformance ends at the API contract boundary.

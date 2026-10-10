@@ -458,7 +458,7 @@ Expose is the backend boundary through which a surface or protocol is served.
 
 Backend semantics must remain independent of the chosen control surface.
 
-WebEngine is the canonical MetaModules UI, but WebEngine semantics are not owned by MetaModulesCW. WebEngineCW is the single semantic and contractual authority for WebEngine. MetaModulesCW inherits/requires the WebEngine contracts it needs and defines only the MetaModules ↔ WebEngine integration.
+WebEngine is the canonical MetaModules UI, but WebEngine semantics are not owned by MetaModulesCW. WebEngineCW is the single semantic and contractual authority for WebEngine. MetaModulesCW references only the exported WebEngine API contract. How WebEngine satisfies that contract internally is irrelevant to MetaModules.
 
 Other surfaces may include:
 
@@ -507,7 +507,7 @@ The surface is not moved across an untrusted network. When the working context m
 
 ### WebEngine
 
-WebEngine is the canonical MetaModules UI. Its own semantics and operating contracts belong to WebEngineCW. MetaModulesCW references the required WebEngine contracts and defines how MetaModules Composition, SiteTree, Projections, CS/AC and data are presented to that contract surface.
+WebEngine is the canonical MetaModules UI. Its own semantics and operating contracts belong to WebEngineCW. MetaModulesCW references the WebEngine API contract and binds MetaModules Composition/UI data to that external contract surface.
 
 Its fundamental path is:
 
@@ -869,7 +869,11 @@ Studio
         ↓
 SiteTree + projections
         ↓
-WebEngineCW contracts
+WebEngineCW
+        ↓ exports
+WebEngine API contract
+        ↑ referenced by
+MetaModulesCW
         ↓
 WebEngine (MetaModules UI)
         ↓
@@ -962,7 +966,7 @@ Everyday examples
         ↓
 Studio / SiteTree / Projection relationships
         ↓
-required WebEngineCW contract set
+WebEngine API contract reference
         ↓
 DWH contract closure
         ↓
